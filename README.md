@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Configuration
+- Copy the .env.example file to .env and update the fields
+
 ## Available Scripts
 
 In the project directory, you can run:
