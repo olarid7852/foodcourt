@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import Order from './components/order/order';
+import useFetchOrders from './hooks/UseFetchOrders';
 
 function App() {
+  const { data, loaded } = useFetchOrders("cbafcf5e-da29-4541-9274-193628fb6454");
+  let orders = [];
+  Object.values(data).forEach(page => {
+    orders = [...orders, ...page]
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        {!loaded && (<div>loading.........</div>)}
+        {loaded && orders.map((order) => (
+          <Order key={order.id} order={order} />
+        ))}
+      </main>
     </div>
   );
 }
